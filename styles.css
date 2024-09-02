@@ -1,0 +1,17 @@
+.grid-container{
+    display:grid;
+    gap:0px 0px;
+    grid-auto-rows: 50px;
+    grid-auto-columns:50px;
+}
+.grid-item{
+    background-color: blue;
+    border: 1px solid rgba(0, 0, 0, 0.8); 
+}
+/*.grid-container::before {
+    content: '';
+    width: 0;
+    padding-bottom: 100%;
+    grid-row: 1 / 1;
+    grid-column: 1 / 1;
+  }*/
