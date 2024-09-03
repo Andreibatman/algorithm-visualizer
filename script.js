@@ -49,7 +49,7 @@ const gridGenerator = (e) =>{
             id="grid-${i}-${j}"
             style="grid-row:${i};
             grid-column:${j};"
-            onclick="changeGridElement(${i},${j})";
+            onmousedown="changeGridElement(${i},${j})";
             ></div>`;
             gridMatrix[i][j]=0;
         }

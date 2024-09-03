@@ -34,25 +34,34 @@ h1{
     
 }
 .basic-item{
-    
+    animation-name: g-item;
+    animation-duration:0.5s;
     background-color: rgb(124, 227, 245);
     border: 1px solid rgba(0, 0, 0, 0.8); 
 }
 
 .source-item{
+    animation-name: g-item;
+    animation-duration:0.5s;
     background-color: green;
     border: 1px solid rgba(0, 0, 0, 0.8); 
 }
 
 .destination-item{
+    animation-name: g-item;
+    animation-duration:0.5s;
     background-color:red;
     border: 1px solid rgba(0, 0, 0, 0.8); 
 }
 .obstacle-item{
+    animation-name: g-item;
+    animation-duration:0.5s;
     background-color:dimgray;
     border: 1px solid rgba(0, 0, 0, 0.8); 
 }
 .in-solve-item{
+    animation-name: g-item;
+    animation-duration:0.5s;
     background-color:rgb(182, 182, 15);
     border: 1px solid rgba(0, 0, 0, 0.8); 
 }
@@ -64,3 +73,8 @@ h1{
     grid-row: 1 / 1;
     grid-column: 1 / 1;
   }*/
+
+@keyframes g-item{
+    from {transform:scale(1.2,1.2);}
+    to{transform:scale(1.0,1.0);}
+}
