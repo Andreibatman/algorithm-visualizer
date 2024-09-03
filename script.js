@@ -9,15 +9,23 @@ const gridGenerator = (e) =>{
     const rows = Number(rowsCount.value);
     const columns = Number(columnsCount.value);
     grid.innerHTML = ``;
-    for(let i = 1; i <= rows; i++)
-        for(let j = 1; j <= columns; j++)
+    const height = Math.floor(70*window.innerHeight/100);
+    const width = Math.floor(90*window.innerWidth/100);
+    const rowGridSize = Math.floor(height/rows);
+    const columnGridSize = Math.floor(width/columns);
+    const elementSize = Math.min(rowGridSize,columnGridSize);
+    grid.style.gridAutoRows=`${elementSize}px`;
+    grid.style.gridAutoColumns=`${elementSize}px`;
+    console.log(elementSize);
+    let i,j;
+    for(i = 1; i <= rows; i++)
+        for(j = 1; j <= columns; j++)
         {
-            const gridItem = `<div class="grid-item" 
+            grid.innerHTML+=`<div class="grid-item" 
             id="grid-${i}-${j}"
             style="grid-row:${i};
             grid-column:${j};"
-            ></div>`
-            grid.innerHTML+=gridItem;
+            ></div>`;
         }
 }
 

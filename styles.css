@@ -12,6 +12,7 @@ h1{
 .grid-container{
     margin-inline:auto;
     max-width:fit-content;
+    max-height:fit-content;
     display:grid;
     gap:0px 0px;
     grid-auto-rows: 50px;
