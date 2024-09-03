@@ -1,7 +1,10 @@
+
+
 body{
-    background-image: radial-gradient(circle,#FFDEE9,#B5FFFC);
+    background-color: rgba(0, 0, 0, 0.747);/*radial-gradient(circle,#FFDEE9,#B5FFFC);*/
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align:center;
+    color:white;    
 }
 
 h1{
@@ -50,7 +53,7 @@ h1{
     border: 1px solid rgba(0, 0, 0, 0.8); 
 }
 .in-solve-item{
-    background-color:yellow;
+    background-color:rgb(182, 182, 15);
     border: 1px solid rgba(0, 0, 0, 0.8); 
 }
 
