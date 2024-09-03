@@ -14,16 +14,21 @@
         <button class="btn" id="grid-btn">Generate</button>
     </form>
     <br>
-    <div class="grid-container" id="grid">
-        <!-- <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div> -->
+    <div class="flex-container">
+        <div class="how-to" id="how-to">
+            <span id="tutorial-text">
+                Set the number of rows and columns you want to have, then press generate!
+            </span>
+            <br>
+            <button id="source-btn" hidden onclick="gridButtonClick('source')" >Set the sources</button>
+            <br>
+            <button id="destination-btn" hidden onclick="gridButtonClick('destination')">Set the destinations</button>
+            <br>
+            <button id="obstacle-btn" hidden onclick="gridButtonClick('obstacle')">Set the obstacles</button>
+            <br>
+            <button id="run-btn" hidden>Run the algorithm!</button>
+        </div>
+        <div class="grid-container" id="grid"></div>
     </div>
     <script src="script.js"></script>
 </body>

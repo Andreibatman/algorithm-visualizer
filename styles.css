@@ -9,19 +9,51 @@ h1{
     text-align:center;
 }
 
+.hidden{
+    display:hidden;
+}
+
+.flex-container{
+    display:flex;
+    flex-direction: row;
+}
+.how-to{
+    width:20rem;
+    flex-grow:0;
+}
+
 .grid-container{
     margin-inline:auto;
     max-width:fit-content;
     max-height:fit-content;
     display:grid;
     gap:0px 0px;
-    grid-auto-rows: 50px;
-    grid-auto-columns:50px;
+    
 }
-.grid-item{
-    background-color: blue;
+.basic-item{
+    
+    background-color: rgb(124, 227, 245);
     border: 1px solid rgba(0, 0, 0, 0.8); 
 }
+
+.source-item{
+    background-color: green;
+    border: 1px solid rgba(0, 0, 0, 0.8); 
+}
+
+.destination-item{
+    background-color:red;
+    border: 1px solid rgba(0, 0, 0, 0.8); 
+}
+.obstacle-item{
+    background-color:dimgray;
+    border: 1px solid rgba(0, 0, 0, 0.8); 
+}
+.in-solve-item{
+    background-color:yellow;
+    border: 1px solid rgba(0, 0, 0, 0.8); 
+}
+
 /*.grid-container::before {
     content: '';
     width: 0;
