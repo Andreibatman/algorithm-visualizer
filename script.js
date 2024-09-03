@@ -8,7 +8,6 @@ const gridGenerator = (e) =>{
     event.preventDefault();
     const rows = Number(rowsCount.value);
     const columns = Number(columnsCount.value);
-    console.log(rowsCount,columns);
     grid.innerHTML = ``;
     for(let i = 1; i <= rows; i++)
         for(let j = 1; j <= columns; j++)
