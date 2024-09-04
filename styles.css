@@ -31,7 +31,8 @@ h1{
     max-height:fit-content;
     display:grid;
     gap:0px 0px;
-    
+    animation-name: g-item;
+    animation-duration:0.5s;
 }
 .basic-item{
     animation-name: g-item;
