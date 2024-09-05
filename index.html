@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Algorithm Visualizer</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <h1>Algorithm Visualizer</h1>
     <form id="form-id">
-        <p>Insert the number of rows  <input type="number" id="row-count"></p>
-        <p>Insert the number of columns  <input type="number" id="column-count"/></p>
+        <p>Insert the number of rows <input type="number" id="row-count"></p>
+        <p>Insert the number of columns <input type="number" id="column-count" /></p>
         <button class="btn" id="grid-btn">Generate</button>
     </form>
     <br>
@@ -20,23 +22,25 @@
                 Set the number of rows and columns you want to have, then press generate!
             </span>
             <br>
-            <button id="source-btn" hidden onclick="gridButtonClick('source')" >Set the sources</button>
+            <button id="source-btn" hidden onclick="gridButtonClick('source')"><b>Set the sources</b></button>
             <br>
-            <button id="destination-btn" hidden onclick="gridButtonClick('destination')">Set the destinations</button>
+            <button id="destination-btn" hidden onclick="gridButtonClick('destination')"><b>Set the destinations</b></button>
             <br>
-            <button id="obstacle-btn" hidden onclick="gridButtonClick('obstacle')">Set the obstacles</button>
+            <button id="obstacle-btn" hidden onclick="gridButtonClick('obstacle')"><b>Set the obstacles</b></button>
             <br>
-            <button id="basic-btn" hidden onclick="gridButtonClick('basic')">Set the empty squares</button>
+            <button id="basic-btn" hidden onclick="gridButtonClick('basic')"><b>Set the empty squares</b></button>
             <br>
-            <button id="run-btn" hidden>Run the algorithm!</button>
+            <div id="grid-speed-text" hidden><b>Speed</b></div>
+            <input type="range" min="3500" max="5000" value="4250" id="grid-speed" hidden />
             <br>
-            <div id="grid-speed-text" hidden>Speed</div>
-            <input type="range" min="3500" max="5000" value="4250" id="grid-speed" hidden/>
-            <br>
-            <button id="reset-grid-btn" hidden>Reset the Grid</button>
+            <span class="mini-flex">
+                <button id="run-btn" hidden><img src ="arrow-right-direction-green-icon.png" alt="Run the Algorithm!"/></button>
+                <button id="reset-grid-btn" hidden><img src ="refresh-arrow-icon.png" alt="Refresh the grid"/></button>
+            </span>
         </div>
         <div class="grid-container" id="grid"></div>
     </div>
     <script src="script.js"></script>
 </body>
+
 </html>
