@@ -65,12 +65,10 @@ const gridGenerator = (e) =>{
             const jj = j;
             document.getElementById(`grid-${ii}-${jj}`).addEventListener("mouseover", e => {
                 if(e.buttons == 1 ){
-                    //console.log("AICI",ii,jj);
                     changeGridElement(ii,jj);
                 }
             });
             document.getElementById(`grid-${ii}-${jj}`).addEventListener("mousedown", e => {
-                    //console.log("AICI",ii,jj);
                     changeGridElement(ii,jj);
             });
             
@@ -97,8 +95,6 @@ const gridButtonClick = (event) =>{
 
 ///Modify the grid element with the id "grid-row-column"
 const changeGridElement = (row,column) => {
-    console.log(row,column);
-    console.log(gridMatrix[row][column]);
     gridMatrix[row][column]=gridModifier;
     document.getElementById(`grid-${row}-${column}`).className=`${gridModifier}-item`;
     /*if(gridMatrix[row][column]==gridModifier){
