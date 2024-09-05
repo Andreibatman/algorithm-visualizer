@@ -9,7 +9,7 @@ const destinationBtn = document.getElementById("destination-btn");
 const obstacleBtn = document.getElementById("obstacle-btn");
 const runBtn = document.getElementById("run-btn");
 const slider = document.getElementById("grid-speed");
-
+const speedGridText = document.getElementById("grid-speed-text");
 let stopPrevious = 0;
 let gridModifier = '';
 let rows,columns;
@@ -21,6 +21,8 @@ let directionY = [0,1,0,-1];
 let updateGridVisuals;
 let gridSpeed=2500;
 let countOfElements;
+
+///Generate the grid with the possibility of modifying it
 
 const gridGenerator = (e) =>{
     event.preventDefault();
@@ -38,7 +40,6 @@ const gridGenerator = (e) =>{
     grid.style.gridAutoRows=`${elementSize}px`;
     grid.style.gridAutoColumns=`${elementSize}px`;
     grid.style.fontSize =`${elementSize*2/3}px`;
-    console.log(elementSize);
     let i,j;
     for(i = 1; i <= rows; i++){
         gridMatrix[i]=[];
@@ -60,13 +61,19 @@ const gridGenerator = (e) =>{
     obstacleBtn.hidden = false;
     destinationBtn.hidden = false;
     slider.hidden=false;
+    speedGridText.hidden=false;
 }
+
+///Variable change for setting the sources/destinations/obstacles
 
 const gridButtonClick = (event) =>{
     console.log(event);
     gridModifier = event;
 }
 
+
+
+///Modify the grid element with the id "grid-row-column"
 const changeGridElement = (row,column) => {
     if(gridMatrix[row][column]==gridModifier){
         gridMatrix[row][column] = 0;
@@ -76,11 +83,27 @@ const changeGridElement = (row,column) => {
         gridMatrix[row][column]=gridModifier;
         document.getElementById(`grid-${row}-${column}`).className=`${gridModifier}-item`;
     }
+    document.getElementById(`grid-${row}-${column}`).style.animation = 'g-item 0.2s 1';
+    setTimeout(()=>{
+        document.getElementById(`grid-${row}-${column}`).style.animation = '';
+    },200);
 }
 
 formId.addEventListener("submit",(event) => gridGenerator());
 
+///Check if the wanted neighbour is inside the grid
+
 const isInside = element => element[0]>=1 && element[0]<=rows && element[1]>=1 && element[1]<=columns;
+
+///Update the visual of the grid
+
+const updateIndividualElement = (row,column) => {
+    const currentSpot = document.getElementById(`grid-${row}-${column}`);
+    currentSpot.innerText = solveMatrix[row][column];
+    if(currentSpot.classList.contains("basic-item")){
+        currentSpot.className = "in-solve-item";
+    }
+}
 
 const updateVisual = element =>{
     if(stopPrevious === 1){
@@ -91,12 +114,11 @@ const updateVisual = element =>{
     console.log("Stop prev: ",stopPrevious);
     let currentRow = element[0];
     let currentColumn = element[1];
-    const currentSpot = document.getElementById(`grid-${currentRow}-${currentColumn}`);
-    currentSpot.innerText = solveMatrix[currentRow][currentColumn];
-    if(currentSpot.classList.contains("basic-item")){
-        currentSpot.className = "in-solve-item";
-    }
+    updateIndividualElement(currentRow,currentColumn);
+    
 }
+
+///Solve the bfs for the given grid
 
 const solveBfs = () =>{
     countOfElements = 1;
@@ -130,6 +152,8 @@ const solveBfs = () =>{
     }
 }
 
+///Store all of the information using some 2d arrays
+
 runBtn.addEventListener("click",()=>{
     stopPrevious=1;
     if(stopPrevious === 1){
@@ -160,6 +184,8 @@ runBtn.addEventListener("click",()=>{
     solveBfs();
 });
 
+
+///Modify the speed of the algorithm
 
 slider.addEventListener("change",() => {
     gridSpeed = 5001-slider.value;
