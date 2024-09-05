@@ -7,13 +7,15 @@ const tutorialText = document.getElementById("tutorial-text");
 const sourceBtn = document.getElementById("source-btn");
 const destinationBtn = document.getElementById("destination-btn");
 const obstacleBtn = document.getElementById("obstacle-btn");
+const basicBtn = document.getElementById("basic-btn");
 const runBtn = document.getElementById("run-btn");
 const slider = document.getElementById("grid-speed");
 const speedGridText = document.getElementById("grid-speed-text");
 const resetGridBtn = document.getElementById("reset-grid-btn");
 
+
 let stopPrevious = 0;
-let gridModifier = '';
+let gridModifier = 'basic';
 let rows,columns;
 let gridMatrix = [],solveMatrix = [];
 let sourceArray = [];
@@ -52,9 +54,26 @@ const gridGenerator = (e) =>{
             id="grid-${i}-${j}"
             style="grid-row:${i};
             grid-column:${j};"
-            onmousedown="changeGridElement(${i},${j})";
+            
             ></div>`;
-            gridMatrix[i][j]=0;
+            gridMatrix[i][j]='basic';
+        }
+    }
+    for(i = 1; i <= rows; i++){
+        for( j = 1; j <= columns; j++){
+            const ii = i;
+            const jj = j;
+            document.getElementById(`grid-${ii}-${jj}`).addEventListener("mouseover", e => {
+                if(e.buttons == 1 ){
+                    //console.log("AICI",ii,jj);
+                    changeGridElement(ii,jj);
+                }
+            });
+            document.getElementById(`grid-${ii}-${jj}`).addEventListener("mousedown", e => {
+                    //console.log("AICI",ii,jj);
+                    changeGridElement(ii,jj);
+            });
+            
         }
     }
     tutorialText.innerText = `Now select how you would like to customize your grid!`;
@@ -65,6 +84,7 @@ const gridGenerator = (e) =>{
     slider.hidden=false;
     speedGridText.hidden=false;
     resetGridBtn.hidden=false;
+    basicBtn.hidden = false;
 }
 
 ///Variable change for setting the sources/destinations/obstacles
@@ -77,14 +97,18 @@ const gridButtonClick = (event) =>{
 
 ///Modify the grid element with the id "grid-row-column"
 const changeGridElement = (row,column) => {
-    if(gridMatrix[row][column]==gridModifier){
+    console.log(row,column);
+    console.log(gridMatrix[row][column]);
+    gridMatrix[row][column]=gridModifier;
+    document.getElementById(`grid-${row}-${column}`).className=`${gridModifier}-item`;
+    /*if(gridMatrix[row][column]==gridModifier){
         gridMatrix[row][column] = 0;
         document.getElementById(`grid-${row}-${column}`).className=`basic-item`;
     }
     else{
         gridMatrix[row][column]=gridModifier;
         document.getElementById(`grid-${row}-${column}`).className=`${gridModifier}-item`;
-    }
+    }*/
     document.getElementById(`grid-${row}-${column}`).style.animation = 'g-item 0.2s 1';
     setTimeout(()=>{
         document.getElementById(`grid-${row}-${column}`).style.animation = '';
@@ -183,8 +207,7 @@ runBtn.addEventListener("click",()=>{
 ///Reset the whole grid while keeping the size of it
 
 resetGridBtn.addEventListener("click",()=>{
-    gridModifier=0;
-    stopPrevious=1;
+    
     if(stopPrevious === 1){
         clearTimeout(updateGridVisuals);
         updateGridVisuals=0;
@@ -196,8 +219,10 @@ resetGridBtn.addEventListener("click",()=>{
             const element = document.getElementById(`grid-${i}-${j}`);
             element.className = "basic-item";
             element.innerText = ``;
-            gridMatrix[i][j]=0;
+            gridMatrix[i][j]='basic';
     }
+    gridModifier='basic';
+    stopPrevious=1;
 });
 
 ///Modify the speed of the algorithm
