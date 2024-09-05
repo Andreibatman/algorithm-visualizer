@@ -36,7 +36,7 @@ const gridGenerator = (e) =>{
     rows = Number(rowsCount.value);
     columns = Number(columnsCount.value);
     grid.innerHTML = ``;
-    const height = Math.floor(70*window.innerHeight/100);
+    const height = Math.floor(65*window.innerHeight/100);
     const width = Math.floor(70*window.innerWidth/100);
     const rowGridSize = Math.floor(height/rows);
     const columnGridSize = Math.floor(width/columns);
@@ -115,7 +115,7 @@ const changeGridElement = (row,column) => {
     },200);
 }
 
-formId.addEventListener("submit",(event) => gridGenerator());
+generateGrid.addEventListener("click",(event) => gridGenerator());
 
 ///Check if the wanted neighbour is inside the grid
 
