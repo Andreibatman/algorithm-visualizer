@@ -10,6 +10,8 @@ const obstacleBtn = document.getElementById("obstacle-btn");
 const runBtn = document.getElementById("run-btn");
 const slider = document.getElementById("grid-speed");
 const speedGridText = document.getElementById("grid-speed-text");
+const resetGridBtn = document.getElementById("reset-grid-btn");
+
 let stopPrevious = 0;
 let gridModifier = '';
 let rows,columns;
@@ -62,12 +64,12 @@ const gridGenerator = (e) =>{
     destinationBtn.hidden = false;
     slider.hidden=false;
     speedGridText.hidden=false;
+    resetGridBtn.hidden=false;
 }
 
 ///Variable change for setting the sources/destinations/obstacles
 
 const gridButtonClick = (event) =>{
-    console.log(event);
     gridModifier = event;
 }
 
@@ -111,7 +113,6 @@ const updateVisual = element =>{
         updateGridVisuals=0;
         return;
     }
-    console.log("Stop prev: ",stopPrevious);
     let currentRow = element[0];
     let currentColumn = element[1];
     updateIndividualElement(currentRow,currentColumn);
@@ -129,8 +130,6 @@ const solveBfs = () =>{
             break;
         }
         const el = sourceArray.shift();
-        console.log(el);
-        console.log(rows,columns);
         for(let direction = 0; direction < 5; direction++){
             let newEl = [el[0]+directionX[direction],el[1]+directionY[direction]];
             if(stopPrevious === 1){
@@ -139,7 +138,6 @@ const solveBfs = () =>{
                 break;
             }
             if(isInside(newEl) && gridMatrix[newEl[0]][newEl[1]]!=="obstacle" && solveMatrix[newEl[0]][newEl[1]]>solveMatrix[el[0]][el[1]]+1){
-                console.log(newEl);
                 countOfElements++;
                 solveMatrix[newEl[0]][newEl[1]]=solveMatrix[el[0]][el[1]]+1;
                 updateGridVisuals = setTimeout(() => {   
@@ -157,7 +155,6 @@ const solveBfs = () =>{
 runBtn.addEventListener("click",()=>{
     stopPrevious=1;
     if(stopPrevious === 1){
-        console.log("oprire");
         clearTimeout(updateGridVisuals);
         updateGridVisuals=0;
     }
@@ -179,11 +176,29 @@ runBtn.addEventListener("click",()=>{
         alert("You should select where to place your source elements and your destination elements!");
         return;
     }
-    console.log("wow");
     stopPrevious=0;
     solveBfs();
 });
 
+///Reset the whole grid while keeping the size of it
+
+resetGridBtn.addEventListener("click",()=>{
+    gridModifier=0;
+    stopPrevious=1;
+    if(stopPrevious === 1){
+        clearTimeout(updateGridVisuals);
+        updateGridVisuals=0;
+    }
+    sourceArray=[];
+    destinationArray=[];
+    for(let i=1;i<=rows;i++)
+        for(let j=1;j<=columns;j++){
+            const element = document.getElementById(`grid-${i}-${j}`);
+            element.className = "basic-item";
+            element.innerText = ``;
+            gridMatrix[i][j]=0;
+    }
+});
 
 ///Modify the speed of the algorithm
 
